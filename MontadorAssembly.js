@@ -38,12 +38,29 @@
 			for(i in codigo){
 				var linha = codigo[i];
 				
+				// MOV A,n
+				expReg = new RegExp("MOV A,[0-9]+");
+				if( expReg.test(linha) ){
+					codigoMontado.push("b0h");
+					codigoMontado.push( linha.split(",")[1]);
+					continue;
+				}
+
 				// MOV A,[n]
 				expReg = new RegExp("MOV A,\[[0-9]+\]");
 				if( expReg.test(linha) ){
 					codigoMontado.push("a0h");
 					codigoMontado.push( linha.split("[")[1].split("]")[0] );
+					continue;
 				}
+
+				// MOV [n],A
+				expReg = new RegExp("MOV \[[0-9]+\],A");
+				if( expReg.test(linha) ){
+					codigoMontado.push("a2h");
+					codigoMontado.push( linha.split("[")[1].split("]")[0] );
+					continue;
+				}				
 
 			}
 			return codigoMontado.join(" ");
