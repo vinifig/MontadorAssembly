@@ -24,21 +24,29 @@
 			for(i in consts){
 				codigoLimpo.replace(new RegExp(i, 'g'), consts[i]);
 			}
+			// LIMPANDO SUJEIRA
 			codigoLimpo.replace(new RegExp("  ", 'g'), " ");
-			codigoLimpo.replace(new RegExp("[ ", 'g'), "[");
-			codigoLimpo.replace(new RegExp("] ", 'g'), "]");
-			codigoLimpo.replace(new RegExp(" [", 'g'), "[");
-			codigoLimpo.replace(new RegExp(" ]", 'g'), "]");
+			codigoLimpo.replace(new RegExp(" ,", 'g'), ",");
+			codigoLimpo.replace(new RegExp(", ", 'g'), ",");
 			return codigoLimpo;
 		}
 
 		var montaString = function(){ // MONTA O CODIGO
 			var codigo = preMontagem().split("\n");
 			var codigoMontado = [];
+			var expReg;
 			for(i in codigo){
 				var linha = codigo[i];
+				
+				// MOV A,[n]
+				expReg = new RegExp("MOV A,\[[0-9]+\]");
+				if( expReg.test(linha) ){
+					codigoMontado.push("a0h");
+					codigoMontado.push( linha.split("[")[1].split("]")[0] );
+				}
 
 			}
+			return codigoMontado.join(" ");
 		}
 
 		// Público
