@@ -40,12 +40,12 @@
 			}
 			codigoLimpo = codigoLimpo.join("\n");
 			for(i in consts){
-				codigoLimpo.replace(new RegExp(i, 'g'), consts[i]);
+				codigoLimpo = codigoLimpo.replace(new RegExp(i, 'g'), consts[i]);
 			}
 			// LIMPANDO SUJEIRA
-			codigoLimpo.replace(new RegExp("  ", 'g'), " ");
-			codigoLimpo.replace(new RegExp(" ,", 'g'), ",");
-			codigoLimpo.replace(new RegExp(", ", 'g'), ",");
+			codigoLimpo = codigoLimpo.replace(new RegExp("  ", 'g'), " ");
+			codigoLimpo = codigoLimpo.replace(new RegExp(" ,", 'g'), ",");
+			codigoLimpo = codigoLimpo.replace(new RegExp(", ", 'g'), ",");
 			return codigoLimpo;
 		}
 
@@ -54,7 +54,7 @@
 			var codigoMontado = [];
 			var expReg;
 			for(i in codigo){
-				var linha = codigo[i];
+				var linha = codigo[i].split("\r")[0];
 				
 				// INSTRUÇÕES MOV
 

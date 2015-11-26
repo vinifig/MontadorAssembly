@@ -53,14 +53,14 @@ var Montador = function(codigoAssembly){
 		var codigoMontado = [];
 		var expReg;
 		for(i in codigo){
-			var linha = codigo[i];
+			var linha = codigo[i].split("\r")[0];
 			// INSTRUÇÕES MOV
 
 				// MOV A,n
 				expReg = new RegExp("MOV A,[0-9]+");
 				if( expReg.test(linha) ){
 					codigoMontado.push("b0h");
-					codigoMontado.push( linha.split(",")[1].split("\r")[0]);
+					codigoMontado.push( linha.split(",")[1] );
 					continue;
 				}
 
