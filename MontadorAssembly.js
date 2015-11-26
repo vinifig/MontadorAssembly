@@ -38,7 +38,7 @@
 			for(i in codigo){
 				var linha = codigo[i];
 				
-				// COMANDOS MOV
+				// INSTRUÇÕES MOV
 
 					// MOV A,n
 					expReg = new RegExp("MOV A,[0-9]+");
@@ -64,7 +64,7 @@
 						continue;
 					}
 
-				// COMANDOS ADD
+				// INSTRUÇÕES ADD
 
 					// ADD A,n
 					expReg = new RegExp("ADD A,[0-9]+");
@@ -81,7 +81,85 @@
 						codigoMontado.push( linha.split("[")[1].split("]")[0] );
 						continue;
 					}
+
+				// INSTRUÇÕES SUB
+
+					// SUB A,n
+					expReg = new RegExp("SUB A,[0-9]+");
+					if( expReg.test(linha) ){
+						codigoMontado.push("2ch");
+						codigoMontado.push( linha.split(",")[1]);
+						continue;
+					}
+
+					// ADD A,[n]
+					expReg = new RegExp("SUB A,\[[0-9]+\]");
+					if( expReg.test(linha) ){
+						codigoMontado.push("2ah");
+						codigoMontado.push( linha.split("[")[1].split("]")[0] );
+						continue;
+					}
+
+				// INSTRUÇÕES CMP
+
+					// CMP A,n
+					expReg = new RegExp("CMP A,[0-9]+");
+					if( expReg.test(linha) ){
+						codigoMontado.push("3ch");
+						codigoMontado.push( linha.split(",")[1]);
+						continue;
+					}
+
+					// CMP A,[n]
+					expReg = new RegExp("CMP A,\[[0-9]+\]");
+					if( expReg.test(linha) ){
+						codigoMontado.push("3ah");
+						codigoMontado.push( linha.split("[")[1].split("]")[0] );
+						continue;
+					}
+
+				// INSTRUÇÕES DE JUMP
+
+					// JMP n
+					expReg = new RegExp("JMP [0-9]");
+					if( expReg.test(linha) ){
+						codigoMontado.push("ebh");
+						codigoMontado.push( linha.split(" ")[1]);
+						continue;
+					}
+
+					// JC n
+					expReg = new RegExp("JC [0-9]");
+					if( expReg.test(linha) ){
+						codigoMontado.push("72h");
+						codigoMontado.push( linha.split(" ")[1]);
+						continue;
+					}
+
+					// JNC n
+					expReg = new RegExp("JNC [0-9]");
+					if( expReg.test(linha) ){
+						codigoMontado.push("73h");
+						codigoMontado.push( linha.split(" ")[1]);
+						continue;
+					}
 					
+					// JZ n
+					expReg = new RegExp("JZ [0-9]");
+					if( expReg.test(linha) ){
+						codigoMontado.push("74h");
+						codigoMontado.push( linha.split(" ")[1]);
+						continue;
+					}
+
+					// JNZ n
+					expReg = new RegExp("JNZ [0-9]");
+					if( expReg.test(linha) ){
+						codigoMontado.push("75h");
+						codigoMontado.push( linha.split(" ")[1]);
+						continue;
+					}
+
 			}
 			return codigoMontado.join(" ");
 		}
