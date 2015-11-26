@@ -24,11 +24,21 @@
 			for(i in consts){
 				codigoLimpo.replace(new RegExp(i, 'g'), consts[i]);
 			}
+			codigoLimpo.replace(new RegExp("  ", 'g'), " ");
+			codigoLimpo.replace(new RegExp("[ ", 'g'), "[");
+			codigoLimpo.replace(new RegExp("] ", 'g'), "]");
+			codigoLimpo.replace(new RegExp(" [", 'g'), "[");
+			codigoLimpo.replace(new RegExp(" ]", 'g'), "]");
 			return codigoLimpo;
 		}
 
 		var montaString = function(){ // MONTA O CODIGO
-			return preMontagem();
+			var codigo = preMontagem().split("\n");
+			var codigoMontado = [];
+			for(i in codigo){
+				var linha = codigo[i];
+
+			}
 		}
 
 		// Público
