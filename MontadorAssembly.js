@@ -5,6 +5,17 @@
 		
 		codigoAssembly = codigoAssembly || "";
 		var consts = []; // CONSTANTES
+		var instrucoes = [
+			"ADD",
+			"SUB",
+			"MOV",
+			"CMP",
+			"JMP",
+			"JC",
+			"JNC",
+			"JZ",
+			"JNZ",
+		];
 
 		var preMontagem = function(){ // PRE-PROCESSA A STRING
 			var codigoLimpo = codigoAssembly.split("\n");	
@@ -17,6 +28,13 @@
 					var params = codigoLimpo[i].split("EQU");
 					consts[params[0]] = params[1];
 					codigoLimpo.splice(i, 1);	
+					continue;
+				}
+				var instrucao = codigoLimpo[i].split(" ");
+				if(instrucoes.indexOf(instrucao[0]) == -1){ // EH ROTULO
+					consts[instrucao[0]] = i; // INSERE A LINHA PARA ONDE VAI
+					instrucao.splice(0,1);
+					codigoLimpo[i] = instrucao.join(" ");
 				}
 
 			}
