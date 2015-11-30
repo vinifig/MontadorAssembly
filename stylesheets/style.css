@@ -1,0 +1,36 @@
+/* PERSONAL CSS */
+
+textarea{
+  resize:none;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+  padding:15px;
+  border-radius:0.3rem;
+  width:45%;
+  min-height:400px;
+  background:white !important;
+  color: gray !important;
+}
+
+#entry{
+	margin-right:9%;
+}
+
+button.btn{
+	background: rgba(21,136,104,0.5);
+	width:15%;
+	margin-left:42.5%;
+	margin-top:20px;
+}
+
+button.btn:hover{
+	background: rgba(21,136,104,0.8);
+}
+
+@media (max-width: 850px){
+	textarea{
+		width:100%;
+	}
+	#entry{
+		margin: 0;
+	}
+}
