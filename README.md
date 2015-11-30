@@ -4,4 +4,4 @@ Montador de códigos Assembly em javascript, utilizando os dados adquiridos na a
 
 ## Exemplo
 
-Exemplo de implementação: [http://vinifig.github.io/MontadorAssembly.js/](MontadorAssembly.js)
+Exemplo de implementação: [http://vinifig.github.io/MontadorAssembly.js/](http://vinifig.github.io/MontadorAssembly.js/)
