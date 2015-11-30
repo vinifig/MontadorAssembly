@@ -26,6 +26,20 @@ button.btn:hover{
 	background: rgba(21,136,104,0.8);
 }
 
+.sim{
+	color: #159957; /*VERDE*/
+}
+
+.parcial{
+	color: #D8C900; /*AMARELO*/
+}
+
+.nao{
+	color: #FF2C2C; /*VERMELHO*/
+}
+
+
+
 @media (max-width: 850px){
 	textarea{
 		width:100%;
